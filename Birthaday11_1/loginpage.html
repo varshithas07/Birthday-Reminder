@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signinpage</title>
+    <style>
+        body{
+            background-image: linear-gradient(120deg,#4269f5,#429ef5,#42b9f5,lightblue);
+            color:black;
+            justify-content: center;
+        }
+        h1,p{
+            text-align: center;
+        }
+        .main{
+            display: grid;
+            grid-template-columns: 1fr 500px 1fr ;
+            grid-template-rows: 150px 180px 180px ;
+        }
+        #heading{
+            display: inline;
+            grid-column: 1;
+            grid-row: 1;
+            text-align: left;
+           font-family: cursive;
+            }
+        #singnup{
+            grid-column:2;
+            grid-row:2/4 ;
+            background-color:beige ; 
+            border-radius: 10px;
+            color: black;
+            place-items: center;
+            margin-left: 20px;
+            font-family: Times New Roman;
+            }
+        #form1 {
+            background-color: beige; 
+            margin: 5% auto 15% auto;
+            border: 0; 
+            width: 80%;
+            background-image: linear-gradient(white);
+            border-color: 20px black;
+        }
+        button{
+            width: 150px;
+            height: 30px;
+            background-image: linear-gradient(grey,white,grey);
+            color:black;
+            align-items: left;
+            margin-left: 100px;
+            border-radius: 20px;
+            font-size: larger;
+            border: solid 1px black;
+     }
+    input[type=email], input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background-image: linear-gradient(-120deg,#42b9f5,#429ef5,lightblue); /*background color for the page*/
+            color: black;
+            border-radius: 10px;
+        }
+    #email1{
+         color: black;
+        }
+</style>
+
+</head>
+<body>
+    <div class="main">
+    <div id="singnup">
+    <h1>SIGN UP</h1><hr>
+
+    <form id="form1">
+    <label for="email"><b><big> E-MAIL</big></b></label><br><br>
+    <input  type="email" id="email1" placeholder=" Enter Email" name="email" required><br><br>
+    <button onclick="sendEmail(email.value);reset();return false" >Sign up</button>
+    </form>
+    </div>
+</div>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+   function sendEmail(e){
+    console.log(e)
+        Email.send({
+        Host : "smtp.elasticemail.com",
+        Username : "sivasuro.1234@gmail.com",
+        Password : "328B74D24D30BE65ACB5B229C934E602A362",
+        To :e,
+        From :"sivasuro.1234@gmail.com",                                   
+        Subject : "birthaday reminder",
+        Body : "Hi, welcome to birthaday reminder,<br><br> you can set a birthday reminder to wish your friend on time."
+        }).then(
+    //    message =>console.log("email sent sucussfully")
+      );
+    window.location.href ="dateform.html"
+        }
+    console.log("email sent")
+</script>
+</body>
+</html>

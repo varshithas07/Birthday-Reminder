@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Remainder</title>
+    
+    <style>
+       
+        .con1{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 100px 100px 380px;
+            background-image: linear-gradient(120deg,#4269f5,#429ef5,#42b9f5,lightblue); /* adding a graident color to the background of page*/
+            font-family: cookie;
+             }
+             #img1{
+                grid-column: 1;
+                grid-row: 1;
+               }
+        #heading{
+            grid-column: 1/4;
+            grid-row: 2;
+            text-align: center;
+            font-family: cookie;
+            text-shadow: 2px 2px brown;
+        }
+
+        #container{
+            grid-row: 3;
+            grid-column:2;
+            text-align: center;
+        }
+        button{
+            background-image: linear-gradient(white,silver,rgb(70, 68, 68));
+            height: 40px;
+            width: 200px;
+            border: 0;
+            border-radius: 10px;
+            font-size: larger;
+            font-family: cookie;
+        }
+h1{
+    color:black; 
+    background-color: white;
+}
+#img2{
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+
+}
+
+
+</style>
+</head>
+<body>
+    
+    <div class="con1">
+        <div id="img1">
+        <img style=" width: 150px; height: 100px;" src="https://media.tenor.com/URQQ0PmqC2oAAAAM/happy-birthday.gif" alt="not found">
+        </div>
+      <div id="heading">
+        <h1><marquee direction="right" scrollamount="12"> &#127882;&#127874; BIRTHDAY REMINDER !!!&#127874;&#127882;</marquee></h1><br><br>
+      </div>
+     <div id="container">
+        <img  id='img2' src="img/img1.jpeg" alt="not found"><br><br>
+        <h2 style="font-style: italic;">Get reminded about your friends by Email <br>
+        It is safe , secure and free for everyone</h2>
+        <form action="loginpage.html">
+          <button><b> Get Started </b></button>
+        </form>
+    </div>    
+    </div>
+</body>
+</html>

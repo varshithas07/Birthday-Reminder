@@ -1,0 +1,153 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display</title>
+    <style>
+        body{
+            background-image: linear-gradient(120deg,#4269f5,#429ef5,#42b9f5,lightblue);
+
+        }
+            .a{
+                display: grid;
+                grid-column: 1fr 1fr 1fr;
+                grid-row: 1fr 1fr ;
+                margin-top: 200px;
+               
+            }
+
+            #b{
+                grid-column: 2;
+                grid-row: 2;
+                background-color: beige;
+                border-radius: 20px;
+                color: black;
+                border: 10px black;  
+                margin-right: 400px;
+                margin-left: 400px ;
+                margin-bottom: 200px; 
+                padding-left: 100px;
+                padding-right: 100px; 
+            }
+            #button1{
+                background-image:linear-gradient(grey,white,grey);
+                border: 0;
+                color: black;
+                border-radius: 20px;
+                width: 100px;
+                height: 30px;
+            }
+           .delete-button{
+            width: 40px;
+            height: 30px;
+           }
+
+        </style>
+        
+</head>
+<body  onload="display();" style="border: 20px black;">
+    <div class="a">
+    <div id="b">
+    <h2>List Of Birthdays</h2>
+
+    <div id="userdata1">
+
+    </div>
+    <br><br><form action="dateform.html ">
+        <button id="button1">Add Birthday</button>
+    </form>
+</div>
+</div>
+
+<!--script-->
+<script src=" https://smtpjs.com/v3/smtp.js"></script>
+<script>
+function display(){ 
+    const array = JSON.parse(localStorage.getItem('userdata'));
+    // Display the data on the page
+    const userDataDiv = document.getElementById('userdata1'); // div id is userdata1
+
+    if (array && array.length > 0) {
+        
+        array.forEach((userdata, index) => {
+              const userDiv = document.createElement('div');
+              let year =  new Date().getFullYear(); //calucate the year
+             cal_year=year-userdata.year //calculating the year
+             console.log(userdata.year)
+             userDiv.innerHTML = `<h3>${userdata.name}</h3>
+                                  <p>Born on ${userdata.date} -${userdata.month}-${userdata.year},<br>will turn  ${cal_year} <br><br> </p> 
+                                  <!-- <h3>Email:${userdata.email}</h3>
+                                  <h3>year:${userdata.year},<br><br></h3>
+                                <h3>month: ${userdata.month}</h3>
+                                <h3>date:${userdata.date}</h3>-->
+                               <button class="delete-button" data-index=" ${index}"><img src="https://cdn-icons-png.flaticon.com/512/5561/5561819.png" alt="not found" width="25px" heigth="25px"> <br><br></button>`;
+             userDataDiv.appendChild(userDiv);
+}
+);
+}
+// Add event listeners to delete buttons
+const deleteButtons = document.querySelectorAll('.delete-button');
+deleteButtons.forEach((button) => {
+    button.addEventListener('click', function () {
+    const indexToDelete = parseInt(this.getAttribute('data-index'));
+    // Remove the data from the array
+    array.splice(indexToDelete, 1);
+   // Update the data in localStorage
+   localStorage.setItem('userdata', JSON.stringify(array));
+    // Refresh the page to reflect changes
+    location.reload();
+    });
+});
+}
+
+
+function sendemail(){ 
+const array = JSON.parse(localStorage.getItem('userdata'));
+// console.log("The current month is " + monthNames[d1.getMonth()]);
+//email part
+if (array && array.length > 0) {
+        
+        array.forEach((userdata, index) => {
+let today = new Date();
+m1=today.getMonth()+1
+mm=userdata.month
+dd=userdata.date
+let d=today.getDate()
+console.log("sysytem:",m1,d)
+console.log("form:",mm, dd)
+name=userdata.name
+const time = today.toLocaleTimeString();
+
+console.log("gettime:")
+console.log("time:",time)
+t2=today.setHours(17,30,0);
+console.log("time1:",t2)
+
+
+    
+       console.log("month:",m1,mm)
+       if(d=dd && m1==mm)
+          {
+             console.log("date:",d,dd)
+             Email.send({
+             Host : "smtp.elasticemail.com",
+             Username : "sivasuro.1234@gmail.com",
+             Password : "328B74D24D30BE65ACB5B229C934E602A362",
+             To :userdata.email,
+             From :"sivasuro.1234@gmail.com",                                   
+            //  document.getElementById('email').value,
+            Subject : "Birthady reminder",
+            Body : "Today is your friend "+name+" 's  Birthday  wish your friend  <br> <img src='https://media.tenor.com/IvAm97-ihhcAAAAM/funny-happy.gif' alt='image not found'>" 
+            }).then(
+            message => console.log("email sent")
+            );
+         }
+        
+        
+    })}
+}
+sendemail()
+
+</script>
+</body>
+</html>

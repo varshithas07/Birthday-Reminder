@@ -1,0 +1,19 @@
+body{
+    background-color: pink;
+}
+.container{
+    text-align: center;
+    font-weight: lighter;
+}
+h1{
+    text-align: center;
+    font-weight: bold;
+}
+.horizontal-center {
+    margin: 0;
+    position: center;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+   
+  }
